@@ -1,0 +1,903 @@
+
+/* Variables and fonts. */ 
+
+:root 
+{
+  --page-background-color: #2f302f;
+  --main-green-color: #27BE71;
+  --header-height: 100px;
+}
+
+@font-face 
+{
+  font-family: taskFont;
+  src: url(Fonts/Manrope-Regular.ttf);
+}
+
+@font-face 
+{
+  font-family: technoFont;
+  src: url(Fonts/CODE\ Light.otf);
+}
+
+@font-face 
+{
+  font-family: technoFontBold;
+  src: url(Fonts/CODE\ Bold.otf);
+}
+
+
+@font-face 
+{
+  font-family: gamingFont;
+  src: url(Fonts/EASPORTS15.ttf);
+}
+
+@font-face 
+{
+  font-family: disneyFont;
+  src: url(Fonts/waltographUI.ttf);
+}
+
+@font-face 
+{
+  font-family: summerFont;
+  src: url(Fonts/Poppins-Black.ttf);
+}
+
+/*  */
+
+/* General document. */
+
+html, body 
+{
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  background-color: var(--page-background-color);
+}
+
+/*  */
+
+/* Classes responsible for disabling a page except for one specific element. */
+
+.disablePage
+{
+  pointer-events: none;
+}
+
+.activatePointerEvents
+{
+  pointer-events: all;
+  /* opacity: 1;  */
+}
+
+.lowOpacity
+{
+  opacity: 0.2;
+}
+
+/*  */
+
+/* Header section. */
+
+header
+{
+  width: 100%;
+  height: 17em;
+  background-color: transparent;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding-left: 8em;
+  position: relative;
+}
+
+h1, h2, h3
+{
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  color: white;
+}
+
+.firstSubHeading
+{
+  top: 54px;
+  left: 225px;
+  font-family: technoFont;
+  font-size: 50px;
+  padding: 5px 5px;
+  width: 150px;
+  height: 45px;
+  text-align: center;
+  border: 3px solid white;
+  box-shadow: 0 0 10px white;
+  text-shadow: 0 0 10px white;
+}
+
+.box
+{
+  position: absolute;
+  width: 230px;
+  height: 65px;
+  top: 115px;
+  left: 270px;
+  background-color: white;
+  box-shadow: 0 0 10px white;
+}
+
+.subHeading
+{
+  position: static;
+  text-align: center;
+  margin-top: 15px;
+  font-size: 35px;
+  color: var(--page-background-color);
+  font-family: disneyFont;
+  text-shadow: 0 0 10px var(--page-background-color);
+}
+
+.secondSubHeading
+{
+  top: 3em;
+  left: 4.5em;
+  box-sizing: border-box;
+  width: 300px;
+  height: 75px;
+  text-align: center;
+  font-family: gamingFont;
+  font-size: 60px;
+  color: #FF4B66;
+  border: 3px solid white;
+  box-shadow: 0 0 10px white;
+  text-shadow: 0 0 10px #FF4B66;
+}
+
+.secondSubHeading::before
+{
+  content: 'THE';
+  display: inline;
+  padding-top: 10px;
+  box-sizing: border-box;
+  width: 75px;
+  height: 60px;
+  position: absolute;
+  color: white;
+  left: -2.6em;
+  top: -1em;
+  font-family: technoFontBold;
+  font-size:30px;
+  border: 3px solid white;
+  box-shadow: 0 0 10px white;
+  text-shadow: 0 0 10px white;
+}
+
+.mainHeading
+{
+  top: 40px;
+  left: 600px;
+  font-family: summerFont;
+  font-size: 130px;
+  color: var(--page-background-color);
+  -webkit-text-stroke: 0.3vw #747574;
+  text-transform: uppercase;
+}
+
+.mainHeading::before
+{
+  content: attr(data-text);
+  white-space: pre;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  color: var(--main-green-color);
+  -webkit-text-stroke: 0.3vw var(--main-green-color);
+  border-right: 5px solid var(--main-green-color);
+  overflow: hidden;
+  animation: brighting 6s linear infinite;
+}
+
+@keyframes brighting
+{
+  0%, 10%, 100%
+  {
+    width: 0;
+  }
+  70%, 90%
+  {
+    width: 100%;
+  }
+}
+
+/*  */
+
+
+/* Main section. */
+
+main
+{
+  padding-top: 50px;
+  padding-left: 200px;
+  padding-right: 200px;
+}
+
+.taskList
+{
+  list-style: none;
+  margin-left: 0px;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+/*  */
+
+/* Task design. */
+
+/* Labels and checkboxes. */
+
+.container 
+{
+  display: block;
+  position: relative;
+  padding-left: 40px;
+  padding-top: 3px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  font-family: taskFont;
+  font-size: 15px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: var(--main-green-color);
+  transition: 0.125s;
+}
+
+.container input
+{
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark 
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #BFEBD4;
+  border: 2px solid var(--main-green-color);
+  border-radius: 15px;
+  transition: 0.125s;
+}
+
+.container:hover
+{
+  margin-top: 5px;
+  margin-bottom: 25px;
+  padding-top: 5px;
+  padding-left: 50px;
+}
+
+.container:hover input ~ .checkmark
+{
+  margin-left: 5px;
+  height: 30px;
+  width: 30px;
+  border-radius: 20px;
+}
+
+.checkmark:after
+{
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.container input:checked ~ .checkmark:after 
+{
+  display: block;
+}
+
+.container .checkmark:after
+{
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid #059862;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  transition: 0.125s;
+}
+
+.container:hover > .checkmark:after
+{
+  left: 11px;
+  top: 7px;
+}
+
+/*  */
+
+/* Styles for date choosing. */
+
+.datePicker
+{
+  visibility: hidden;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  right: 370px;
+  transition: 0.125s;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+}
+
+.datePicker:hover
+{
+  transform: rotate(360deg);
+}
+
+.container:hover > .datePicker
+{
+  visibility: visible;
+}
+
+/* Style of the form shown when date button is clicked. */
+
+.datePickerContainer
+{
+  position: absolute;
+  top: calc(50% - 75px);
+  left: calc(50% - 175px);
+  background-color: #1F1F20;
+  height: 150px;
+  width: 350px;
+  display: grid;
+  grid-template-rows: 45px 105px;
+  grid-template-columns: 150px 200px;
+  border: 3px solid aliceblue;
+  border-radius: 24px;
+  box-shadow: 0 0 5px aliceblue;
+  z-index: 1;
+  transition: 0.125s;
+}
+
+.taskName
+{
+  align-self: center;
+  padding-top: 3%;
+  padding-left: 15%;
+  color: aliceblue;
+  font-family: technoFontBold;
+  font-size: medium;
+  transition: 0.125s;
+  }
+
+.scrollDatePickContainer
+{
+  grid-row-start: 2;
+  grid-column: 1 / 3;
+  background-color: transparent;
+  height: 80%;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 20%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 5px;
+  justify-items: center;
+  align-items: center;
+  border: 2px solid aliceblue;
+  border-radius: 12px;
+  transition: 0.125s;
+}
+
+.submitDateBtn
+{
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 5px aliceblue;
+    background-color: aliceblue;
+    margin-top: 5%;
+    margin-right: 10%;
+    margin-bottom: 5%;
+    margin-left: 50%;
+    font-family: gamingFont;
+    color: #2F302F;
+    transition: 0.125s;
+  }
+
+.submitDateBtn:hover
+{
+    background-color: var(--main-green-color);
+    box-shadow: 0 0 10px var(--main-green-color);
+}
+
+.submitDateBtn:hover + div
+{
+  border: 2px solid var(--main-green-color);
+}
+
+.taskName:has(+.submitDateBtn:hover)
+{
+  color: var(--main-green-color);
+}
+
+.datePickerContainer:has(.submitDateBtn:hover)
+{
+  border: 3px solid var(--main-green-color);
+  box-shadow: 0 0 10px var(--main-green-color);
+}
+
+.valueContainer
+{
+    background-color: #747574;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    border: 0px solid transparent;
+}
+
+.leftValueContainer
+{
+    border-radius: 12px 0px 0px 12px;
+}
+
+.rightValueContainer
+{
+    border-radius: 0px 12px 12px 0px;
+}
+
+.centralDateValues
+{
+  color: #1F1F20;
+    font-family: gamingFont;
+    font-size: 25px;
+}
+
+/*  */
+
+/*  */
+
+/* Styles for labels that show dates and for buttons related to those */
+
+.dateLeverSVGRotation
+{
+  transform: rotate(90deg);
+}
+
+.dateLabel
+{
+  position: absolute;
+  top: 8;
+  right: 460px;
+  font-family: gamingFont;
+  opacity: 0;
+  transition: 0.125s;
+}
+
+.dateLabel.dateLabelOpacityOn
+{
+  opacity: 1;
+}
+
+.dateDetailBtn
+{
+  visibility: hidden;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  right: 420px;
+  transition: 0.125s;
+  margin: 0;
+  padding: 0;
+  border: none;
+  width: 30px;
+  background-color: transparent;
+  /* outline:  1px solid white; */
+}
+
+.container:hover > .dateDetailBtn
+{
+  visibility: visible;
+}
+
+/*  */
+
+/* Styles for priority choosing elements */
+
+.priorityBtn
+{
+  visibility: hidden;
+  position: absolute;
+  right: 320px;
+  top: 0;
+  height: 100%;
+  width: 30px;
+  background-color: lightblue;
+  border: 2px solid var(--main-green-color);
+  border-radius: 4px;
+}
+
+.container:hover > .priorityBtn
+{
+  visibility: visible;
+}
+
+.prioritySelectionContainer
+{
+  position: absolute;
+  top: calc(50% - 50px);
+  left: calc(50% - 150px);
+  background-color: #1F1F20;
+  width: 300px;
+  height: 100px;
+  border: 5px solid aliceblue;
+  border-radius: 8px;
+  box-shadow: 0 0 5px aliceblue;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 3fr;
+}
+
+
+.prioritiesContainer
+{
+  grid-column: 1 / 3;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+}
+
+.prioritySelection
+{
+  width: 50%;
+  height: 50%;
+  border: 2px solid aliceblue;
+  border-radius: 4px;
+  box-shadow: 0 0 5px aliceblue;
+}
+
+/* priorities styles */
+
+.low
+{
+  background-color: lightblue;
+}
+
+.medium
+{
+  background-color: yellow;
+}
+
+.high
+{
+  background-color: red;
+}
+
+/*  */
+
+/*  */
+
+/* Style for the buttons that remove a task from the list. */
+
+.deleteTask
+{
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  right: 200px;
+  width: 100px;
+  height: 100%;
+  text-transform: uppercase;
+  background-color: var(--main-green-color);
+  border: 2px solid var(--main-green-color);
+  border-radius: 4px;
+  color: #fff;
+  font-family: technoFontBold;
+  font-size: 15px;
+  transition: 0.125s;
+}
+
+.deleteTask:hover
+{
+  color: var(--main-green-color);
+  background-color: transparent;
+}
+
+.container:hover > .deleteTask
+{
+  visibility: visible;
+}
+
+/*  */
+
+/*  */
+
+/* Add button style. */
+
+.specialAddbutron
+{
+  margin-top: 15px;
+  margin-left: 40px;
+  width: 250px;
+  height: 35px;
+  cursor: pointer;
+  font-size: 1.25rem;
+  text-shadow: 0px 0px 10px #fff;
+  font-family: inherit;
+  font-weight: 700;
+  color: #fff;
+  background-color: var(--main-green-color);
+  border: 2px solid #fff;
+  border-radius: 1.25rem;
+  box-shadow: 0 0 5px #fff;
+}
+
+#addButton:focus
+{
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.glow-effect
+{
+  --container-offset: 100px;
+  --glow-line-color: #fff;
+  --glow-line-thickness: 2px;
+  --glow-line-length: 20px;
+  --glow-blur-color: #fff;
+  --glow-blur-size: 5px;
+  --glow-offset: 20px;
+  --animation-speed: 1200ms;
+  position: relative;
+}
+
+.glow-container
+{
+  pointer-events: none;
+  position: absolute;
+  inset: calc(var(--container-offset) / -2);
+  width: calc(100% + var(--container-offset));
+  height: calc(100% + var(--container-offset));
+  opacity: 0;
+  /*outline: 3px solid black;*/
+}
+
+.glow-blur,
+.glow-line
+{
+  width: calc(100% - var(--container-offset) + var(--glow-offset));
+  height: calc(100% - var(--container-offset) + var(--glow-offset));
+  x: calc((var(--container-offset) / 2) + calc(var(--glow-offset) / -2));
+  y: calc((var(--container-offset) / 2) + calc(var(--glow-offset) / -2));
+  rx: 1.25rem;
+  fill: transparent;
+  /*stroke: white;*/
+  /*stroke-width: 5px;*/
+  stroke-dasharray: var(--glow-line-length) calc(50px - var(--glow-line-length));
+}
+
+.glow-effect:is(:hover, :focus) :is(.glow-line, .glow-blur)
+{
+  stroke-dashoffset: -80px;
+  transition: stroke-dashoffset var(--animation-speed) ease-in;
+}
+
+.glow-line
+{
+  stroke: var(--glow-line-color);
+  stroke-width: var(--glow-line-thickness);
+}
+
+.glow-blur
+{
+  filter: blur(var(--glow-blur-size));
+  stroke: var(--glow-blur-color);
+  stroke-width: var(--glow-blur-size);
+}
+
+.glow-effect:is(:hover, :focus) .glow-container
+{
+  animation: glow-visibility var(--animation-speed);
+}
+
+@keyframes glow-visibility
+{
+  0%, 100% { opacity: 0 }
+  25%, 75% { opacity: 1 }
+}
+
+/*  */
+
+/* Styles for elements that are part of the form that is shown when the Add button is clicked. */
+
+#adderDiv
+{
+  display: flex;
+  flex-direction: row;
+  margin-top: 25px;
+  font-family: taskFont;
+  transition: opacity 0.5s;
+}
+
+.whenDisappearing
+{
+  opacity: 0;
+}
+
+#textBoxLine
+{
+  left: 0;
+  color: #BFEBD4;
+  width: 150px;
+  border: none;
+  background-color: transparent;
+  border-bottom: 2px solid var(--main-green-color);
+  font-family: inherit;
+}
+
+#textBoxLine:focus
+{
+  outline: none;
+}
+
+::placeholder
+{
+  color: transparent;
+}
+
+#finalAdd
+{
+  margin-left: 10px;
+  border-width: 2px 1px 2px 2px;
+}
+
+#deleteAdd
+{
+  border-width: 2px 2px 2px 1px;
+}
+
+.textButtons
+{
+  color: #BFEBD4;
+  font-family: Bison;
+  font-size: 17px;
+  width: 45px;
+  height: 30px;
+  border-style: solid;
+  border-color: var(--main-green-color);
+  background-color: transparent;
+  transition: 0.25s;
+}
+
+.textButtons:hover
+{
+  border-color: #88BC6B;
+  background-color: #88BC6B;
+  color: #2F302F;
+}
+
+#epicLabel
+{
+  overflow: hidden;
+  position: absolute;
+  background-color: transparent;
+  font-size: small;
+  font-family: taskFont;
+  white-space: nowrap;
+  transition: color 1s, text-shadow-blur-radius;
+}
+
+.defaultColor
+{
+  text-shadow: 0px 0px 8px #818181;
+  color: #818181;
+}
+
+.warning
+{
+  text-shadow: 0px 0px 3px red;
+  color: red;
+}
+
+@keyframes typing
+{
+  from 
+  {
+    width: 0; 
+  }
+  to
+  {
+    width: 100%;
+  }
+}
+
+#textBoxLine:not(:placeholder-shown) + #epicLabel
+{
+  visibility: hidden;
+  animation: none;
+}
+
+#textBoxLine:placeholder-shown  + #epicLabel
+{
+  animation: typing 3.5s steps(150, end);
+}
+
+/*  */
+
+/* Styles for elements related to sorting. */
+
+.sortBtn
+{
+  position: absolute;
+  top: 300px;
+  right: 400px;
+  height: 25px;
+  width: 55px;
+  background-color: var(--main-green-color);
+  border: none;
+  border-radius: 12px;
+  color: aliceblue;
+  font-family: gamingFont;
+  transition: 0.125s;
+}
+
+.sortBtn:hover
+{
+  border-radius: 0px;
+}
+
+.sortFormContainer
+{
+  margin: 0;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 2px;
+  padding: 2px 2px 2px 2px;
+  position: absolute;
+  width: 75px;
+  height: 45px;
+  right: 300px;
+  top: 275px;
+  background-color: yellow;
+  list-style: none
+}
+
+.sortOptionContainer
+{
+  width: 100%;
+  height: 100%;
+}
+
+.sortOption
+{
+  border: none;
+  background-color: var(--page-background-color);
+  font-family: gamingFont;
+  color: aliceblue;
+  width: 100%;
+  height: 100%;
+}
+
+/*  */

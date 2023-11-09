@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+    <!-- HEAD -->
+    <head>
+        <title>ToDo List</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+
+        <!-- Link to Page's style -->
+        <link href="../static/indexStyle.css" rel="stylesheet" type="text/css" />
+    </head>
+
+    <!-- BODY -->
+    <body>
+
+        <!-- HEADER SECTION -->
+        <header id="MasterHeader" class="header">
+            <h3 class="firstSubHeading">Simply</h3>
+            <div class="box">
+                <h2 class="subHeading">Incredibly</h2>
+            </div>
+            <h2 class="secondSubHeading">Ultimate</h2>
+            <h1 data-text="ToDo List" class="mainHeading">ToDo List</h1>            
+        </header>
+        
+        <!-- SORTING BUTTON -->
+        <button id="sortButton" class="sortBtn">SORT</button>
+
+        <!-- MAIN SECTION -->
+        <main id="main">
+
+            <!-- LIST OF TASKS -->
+            <ul id="tasks" class="taskList"></ul>
+
+            <!-- BUTTON THE ADDS TASKS -->
+            <button id="addButton"
+                    class="specialAddbutron glow-effect"
+                    title="Press to see the magic">
+                    +    
+                    <svg class="glow-container">
+                        <rect pathlength="100" stroke-linecap="round" class="glow-blur"></rect>
+                        <rect pathlength="100" stroke-linecap="round" class="glow-line"></rect>
+                    </svg>
+            </button>
+
+        </main>
+
+        <!-- Link to Page's script -->
+        <script src="../static/indexCode.js"></script>
+    </body>
+
+</html>
